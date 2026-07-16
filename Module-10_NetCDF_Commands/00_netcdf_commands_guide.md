@@ -28,9 +28,10 @@ Section 1: ncdump — Inspect NC files from command line
 Section 2: ncview  — Quick visual inspection
 Section 3: CDO    — Climate Data Operators (most powerful CLI tool)
 Section 4: NCO    — NetCDF Operators (lower-level manipulation)
-Section 5: Python  — netCDF4 library (raw access)
-Section 6: Python  — xarray (recommended approach)
-Section 7: Recipes — Common real-world operations
+Section 5: CDO ECA — Climate Extremes Indices (TXx, TNn, Rx1day, Rx5day)
+Section 6: Python  — netCDF4 library (raw access)
+Section 7: Python  — xarray (recommended approach)
+Section 8: Recipes — Common real-world operations
 ```
 
 ---
