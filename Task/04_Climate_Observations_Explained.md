@@ -49,5 +49,41 @@ If your final goal is to predict the future using Climate Models (like CMIP6), y
 
 ---
 
+## 5. Where and How We Use Observational Data in Practice
+In climate science research and operations, observational data is used for:
+1. **Climatology & Baseline Creation:** Establishing what "normal" weather looks like for a region (e.g., the 30-year average temperature of Lahore). 
+2. **Trend Analysis:** Calculating if a region is getting statistically hotter or wetter over the last 50 years.
+3. **Model Validation:** As mentioned earlier, comparing CMIP6 models against observations to calculate biases before making future projections.
+4. **Impact Studies:** Using historical weather data alongside agricultural or economic data to see how past droughts affected crop yields or GDP.
+
+## 6. Practical Use in Programming (Python Example)
+When you work with gridded observational data like CPC (`.nc` files), you will typically use **Python** with libraries like `xarray` (for multidimensional climate data) and `matplotlib`/`cartopy` (for plotting and mapping).
+
+Here is a practical programming example of how you might load and analyze observational data:
+
+```python
+import xarray as xr
+import matplotlib.pyplot as plt
+
+# 1. Load the gridded observational dataset (e.g., CPC daily temperature)
+ds = xr.open_dataset('tasmax_global_daily_gridded_obs_cpc_1979-2025.nc')
+
+# 2. Extract data for a specific location (e.g., Islamabad: 33.7°N, 73.0°E)
+# method='nearest' finds the closest grid pixel to these exact coordinates
+islamabad_temp = ds.sel(lat=33.7, lon=73.0, method='nearest')
+
+# 3. Calculate the annual maximum temperature trend over time
+# resample('1Y').max() finds the highest temperature for each year
+annual_max = islamabad_temp['tasmax'].resample(time='1Y').max()
+
+# 4. Plot the results to see if the city is getting hotter historically
+annual_max.plot()
+plt.title('Annual Maximum Temperature in Islamabad (Observations)')
+plt.ylabel('Temperature (°C)')
+plt.show()
+```
+
+---
+
 ### 🎯 Summary for your Assignment
 If you are asked to work with "observations," you are working with historical reality (like your **CPC** dataset, PMD station data, or **ERA5**). These datasets are the "ground truth" of climate science, used to understand historical trends and to validate and correct future climate models.
